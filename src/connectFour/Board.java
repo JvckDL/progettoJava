@@ -16,6 +16,75 @@ public class Board {
 		return rows;
 	}
 	
+	
+	public boolean checkForWinner(int col, String winningColor) {
+		boolean someoneWon = false;
+		
+		for(int row = 0; row < rows; row++) {
+			if(ourBoard[row][col] != null) {
+				int winningStreak = 3;
+				
+				//downwards
+				for(int winRow = row + 1; winRow < rows; winRow++) {
+					if(ourBoard[winRow][col].getColor() == winningColor) {
+						winningStreak--;
+						if(winningStreak == 0) {
+							someoneWon = true;
+						}
+					}else {
+						winningStreak = 3;
+					}
+				}
+				
+				winningStreak = 4;
+				
+				
+				//horizontal
+				for(int winCol = col - 3; winCol < col + 3; winCol++) {
+					if(winCol < 0) continue;
+					if(winCol >= columns) break;
+				
+					if(ourBoard[row][winCol] != null && ourBoard[row][winCol].getColor() == winningColor){
+						winningStreak--;
+						if(winningStreak == 0) {
+							someoneWon = true;
+						}
+					}else {
+						winningStreak = 4;
+					}
+				}
+				
+				winningStreak = 4;
+				//left diagonal
+				
+				//VIDEO FINISCE QUA NON è sicuro di quello che ha scritto
+				for(int winRow = row - 3; winRow <= row + 3; winRow++) {
+					if(winRow < 0)continue;
+					if(winRow >= rows) break;
+					
+					for(int winCol = col - 3; winCol <= col + 3; winCol++) {
+						if(winCol < 0)continue;
+						if(winCol >= columns) break;
+						
+						if(ourBoard[row][winCol] != null && ourBoard[row][winCol].getColor() == winningColor){
+							winningStreak--;
+							if(winningStreak == 0) {
+								someoneWon = true;
+							}
+						}else {
+							winningStreak = 4;
+						}
+						
+						}
+					
+					}
+			break;
+			}
+			
+		}
+		return someoneWon;
+	}
+	
 	public boolean addPiece (int colToAdd, String color) {
 		//within normal range
 		if(colToAdd >=0 && colToAdd < columns) {
@@ -33,7 +102,7 @@ public class Board {
 				return addedThePiece;
 			}else {
 				//that row is full
-				System.err.println("This column is full, please choose anorher.");
+				System.err.println("This column is full, please choose another.");
 				return false;
 			}
 		} else {
