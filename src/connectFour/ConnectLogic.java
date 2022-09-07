@@ -3,11 +3,11 @@ package connectFour;
 import java.util.Scanner;
 
 public class ConnectLogic {
-	private Board board;
-	private String player1;
-	private String player2;
-	private String color1 = "RED";
-	private String color2 = "YELLOW";
+	public Board board;
+	public String player1;
+	public String player2;
+	public String color1 = "R";
+	public String color2 = "Y";
 	
 	private boolean player1Turn = true;
 	
@@ -22,6 +22,7 @@ public class ConnectLogic {
 		boolean running = true;
 		
 		while(running) {
+			board.printBoard();
 			String color;
 			if(player1Turn) {
 				color = color1;
@@ -36,14 +37,13 @@ public class ConnectLogic {
 			Scanner in = new Scanner(System.in);
 			int column = in.nextInt();
 			
-			boolean success = board.addPiece(column, color);
+			boolean success = board.addPiece(column - 1, color);
 			
 			if(success) {
 				player1Turn = !player1Turn;
 			}
 			
 			
-			player1Turn = !player1Turn;
 		}
 	}
 }

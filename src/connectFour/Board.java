@@ -2,16 +2,25 @@ package connectFour;
 
 public class Board {
 	
-	private static int rows = 7;
-	private static int columns = 6;
+	private static final int rows = 7;
+	private static final int columns = 6;
 	
 	Piece [][]ourBoard = new Piece [rows][columns];
+	
+	public static int getColumns() {
+		return columns;
+	}
+	
+	
+	public static int getRows() {
+		return rows;
+	}
 	
 	public boolean addPiece (int colToAdd, String color) {
 		//within normal range
 		if(colToAdd >=0 && colToAdd < columns) {
 			//we can add
-			if(ourBoard[colToAdd][0] == null) {
+			if(ourBoard[0][colToAdd] == null) {
 				boolean addedThePiece = false;
 				for ( int row = rows -1; row >= 0; row--) {
 					if(ourBoard[row][colToAdd] == null) {
