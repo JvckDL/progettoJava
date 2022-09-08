@@ -26,7 +26,7 @@ public class Board {
 				
 				//downwards
 				for(int winRow = row + 1; winRow < rows; winRow++) {
-					if(ourBoard[winRow][col].getColor() == winningColor) {
+					if(ourBoard[winRow][col].getColor().equals(winningColor)) {
 						winningStreak--;
 						if(winningStreak == 0) {
 							someoneWon = true;
@@ -44,7 +44,7 @@ public class Board {
 					if(winCol < 0) continue;
 					if(winCol >= columns) break;
 				
-					if(ourBoard[row][winCol] != null && ourBoard[row][winCol].getColor() == winningColor){
+					if(ourBoard[row][winCol] != null && ourBoard[row][winCol].getColor().equals(winningColor)){
 						winningStreak--;
 						if(winningStreak == 0) {
 							someoneWon = true;
@@ -61,7 +61,7 @@ public class Board {
 					if(winRow < 0 || winCol < 0)continue;
 					if(winRow >= rows || winCol >= columns) break;
 						
-					if(ourBoard[winRow][winCol] != null && ourBoard[winRow][winCol].getColor() == winningColor){
+					if(ourBoard[winRow][winCol] != null && ourBoard[winRow][winCol].getColor().equals(winningColor)){
 						winningStreak--;
 						if(winningStreak == 0) {
 							someoneWon = true;
@@ -78,7 +78,7 @@ public class Board {
 					if(winRow < 0 || winCol >= columns)continue;
 					if(winRow >= rows || winCol < 0) break;
 						
-					if(ourBoard[winRow][winCol] != null && ourBoard[winRow][winCol].getColor() == winningColor){
+					if(ourBoard[winRow][winCol] != null && ourBoard[winRow][winCol].getColor().equals(winningColor)){
 						winningStreak--;
 						if(winningStreak == 0) {
 							someoneWon = true;

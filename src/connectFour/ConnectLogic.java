@@ -31,10 +31,10 @@ public class ConnectLogic {
 			String color;
 			if(player1Turn) {
 				color = color1;
-				System.out.println(player1 + "'s turn.");
+				System.out.println(player1 + "'s turn. " + color1);
 			}else {
 				color = color2;
-				System.out.println(player2 + "'s turn.");
+				System.out.println(player2 + "'s turn. " + color2);
 			}
 			
 			System.out.println("Please select a column between 1 and 6:");
