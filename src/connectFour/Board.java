@@ -55,30 +55,39 @@ public class Board {
 				}
 				
 				winningStreak = 4;
-				//left diagonal
 				
-				//VIDEO FINISCE QUA NON è sicuro di quello che ha scritto
-				for(int winRow = row - 3; winRow <= row + 3; winRow++) {
-					if(winRow < 0)continue;
-					if(winRow >= rows) break;
-					
-					for(int winCol = col - 3; winCol <= col + 3; winCol++) {
-						if(winCol < 0)continue;
-						if(winCol >= columns) break;
+				//left diagonal
+				for(int winRow = row - 3, winCol = col - 3; winRow <= row + 3 && winCol <= col + 3; winRow++, winCol ++) {
+					if(winRow < 0 || winCol < 0)continue;
+					if(winRow >= rows || winCol >= columns) break;
 						
-						if(ourBoard[row][winCol] != null && ourBoard[row][winCol].getColor() == winningColor){
-							winningStreak--;
-							if(winningStreak == 0) {
-								someoneWon = true;
+					if(ourBoard[winRow][winCol] != null && ourBoard[winRow][winCol].getColor() == winningColor){
+						winningStreak--;
+						if(winningStreak == 0) {
+							someoneWon = true;
 							}
 						}else {
 							winningStreak = 4;
-						}
-						
-						}
-					
+						}			
 					}
-			break;
+				
+				winningStreak = 4;
+				
+				//left diagonal
+				for(int winRow = row - 3, winCol = col + 3; winRow <= row + 3 && winCol >= col - 3; winRow++, winCol --) {
+					if(winRow < 0 || winCol >= columns)continue;
+					if(winRow >= rows || winCol < 0) break;
+						
+					if(ourBoard[winRow][winCol] != null && ourBoard[winRow][winCol].getColor() == winningColor){
+						winningStreak--;
+						if(winningStreak == 0) {
+							someoneWon = true;
+							}
+						}else {
+							winningStreak = 4;
+						}			
+					}
+					break;
 			}
 			
 		}

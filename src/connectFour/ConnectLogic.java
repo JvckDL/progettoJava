@@ -18,6 +18,10 @@ public class ConnectLogic {
 		
 	}
 	
+	public void reset() {
+		this.board = new Board();
+	}
+	
 	
 	public void startGame() {
 		boolean running = true;
@@ -43,11 +47,19 @@ public class ConnectLogic {
 			if(success) {
 				if(checkWinner(column)) {
 					board.printBoard();
-					running = false;
 					if(player1Turn) {
 						System.out.println(player1 + " has won");
 					} else {
 						System.out.println(player2 + " has won");
+					}
+					System.out.println("Would you like to play againg?");
+					System.out.println("Type Y for Yes, anything else for no");
+					Scanner in2= new Scanner(System.in);
+					String playAgain = in2.nextLine();
+					if(playAgain.toLowerCase().equals("y")) {
+						reset();
+					}else {
+						running = false;
 					}
 				}
 				
@@ -65,7 +77,6 @@ public class ConnectLogic {
 		}else {
 			winningColor = color2;
 		}
-		
 		return board.checkForWinner(column, winningColor);
 	}
 }
