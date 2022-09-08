@@ -73,7 +73,7 @@ public class Board {
 				
 				winningStreak = 4;
 				
-				//left diagonal
+				//right diagonal
 				for(int winRow = row - 3, winCol = col + 3; winRow <= row + 3 && winCol >= col - 3; winRow++, winCol --) {
 					if(winRow < 0 || winCol >= columns)continue;
 					if(winRow >= rows || winCol < 0) break;

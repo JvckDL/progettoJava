@@ -9,6 +9,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		GUI gui = new GUI();
 		System.out.println("Enter the name of the first player:");
 		Scanner in = new Scanner(System.in);
 		player1 = in.next();

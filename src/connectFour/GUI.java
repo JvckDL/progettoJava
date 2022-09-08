@@ -1,8 +1,7 @@
 package connectFour;
 
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
+import java.awt.event.*;
 import java.net.URL;
 
 import javax.swing.*;
@@ -11,8 +10,8 @@ public class GUI extends JFrame {
 	
 	int rows = 7;
 	int columns = 6;
-	int width = 100;
-	int height = 100;
+	//int width = 100;
+	//int height = 100;
 	
 	private String imgEmptyFileName = "images/empty.png";
 	private String imgRedFileName = "images/red.png";
