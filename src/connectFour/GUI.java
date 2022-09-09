@@ -32,6 +32,13 @@ public class GUI extends JFrame {
 		int row10plusCol = Integer.parseInt(button.getName());
 		int col = row10plusCol % 10;
 		
+		boolean player1turn = game.getPlayer1Turn();
+		if(player1turn) {
+			setTitle(title + "Yellow");
+		}else {
+			setTitle(title + "Red");
+		}
+		
 		int addedRow = game.round(col);
 		
 		if(addedRow != -1) {
@@ -86,13 +93,14 @@ public class GUI extends JFrame {
 				JButton button = new JButton();
 				button.setIcon(iconEmpty);
 				button.setPreferredSize(new Dimension(100, 100));
-				button.setName(Integer.toString(row + 10 + col));
+				button.setName(Integer.toString(row * 10 + col));
 				button.addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						updateOnButton(((JButton)(e.getSource())));
+						
 					}
 				});
 				cp.add(button);
@@ -101,8 +109,11 @@ public class GUI extends JFrame {
 		// c'e da sistemare il fatto che dice sempre rosso nel nome della finestra, forse e' sbagliato il modo in cui prendo il player1turn
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		boolean player1turn = game.getPlayer1Turn();
-		if(!player1turn) setTitle(title + "Yellow");
-		else setTitle(title + "Red");
+		if(!player1turn) {
+			setTitle(title + "Yellow");
+		}else {
+			setTitle(title + "Red");
+		}
 		setLocationRelativeTo(null);
 		setSize(windowWidth, windowHeight);
 		setVisible(true);
