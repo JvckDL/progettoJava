@@ -10,8 +10,8 @@ public class GUI extends JFrame {
 	
 	int rows = 7;
 	int columns = 6;
-	int windowWidth = 650;
-	int windowHeight = 775;
+	int windowWidth = 616;
+	int windowHeight = 737;
 	
 	private Container cp;
 	private String imgEmptyFileName = "images/empty.png";
@@ -22,22 +22,25 @@ public class GUI extends JFrame {
 	private ImageIcon iconRed = null;
 	private ImageIcon iconYellow = null;
 	
+	private String title = "Connect Four - ";
+	
 	private ConnectLogic game;
 	
 
 	
 	private void updateOnButton(JButton button) {
 		int row10plusCol = Integer.parseInt(button.getName());
-		int row = row10plusCol / 10;
 		int col = row10plusCol % 10;
 		
-		boolean success = game.round(col);
+		int addedRow = game.round(col);
 		
-		if(success) {
+		if(addedRow != -1) {
+			
+			JButton buttonToUpdate = ((JButton)(cp.getComponent(columns * addedRow + col)));
 			if(game.getPlayer1Turn()) {
-				button.setIcon(iconYellow);
+				buttonToUpdate.setIcon(iconYellow);
 			}else {
-				button.setIcon(iconRed);
+				buttonToUpdate.setIcon(iconRed);
 			if(game.checkWinnerGUI(col)) {
 				JOptionPane.showMessageDialog(null, "You have won!");
 			}
@@ -76,7 +79,7 @@ public class GUI extends JFrame {
 		}
 		
 		cp = getContentPane();
-		cp.setLayout(new FlowLayout(FlowLayout.CENTER));
+		cp.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
 		
 		for (int row = 0; row < rows; row ++) {
 			for (int col = 0; col < columns; col ++) {
@@ -95,9 +98,11 @@ public class GUI extends JFrame {
 				cp.add(button);
 			}
 		}
-		
+		// c'e da sistemare il fatto che dice sempre rosso nel nome della finestra, forse e' sbagliato il modo in cui prendo il player1turn
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Connect4");
+		boolean player1turn = game.getPlayer1Turn();
+		if(!player1turn) setTitle(title + "Yellow");
+		else setTitle(title + "Red");
 		setLocationRelativeTo(null);
 		setSize(windowWidth, windowHeight);
 		setVisible(true);

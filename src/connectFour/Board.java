@@ -94,30 +94,32 @@ public class Board {
 		return someoneWon;
 	}
 	
-	public boolean addPiece (int colToAdd, String color) {
+	public int addPiece (int colToAdd, String color) {
 		//within normal range
 		if(colToAdd >=0 && colToAdd < columns) {
 			//we can add
 			if(ourBoard[0][colToAdd] == null) {
 				boolean addedThePiece = false;
+				int addedRow = -1;
 				for ( int row = rows -1; row >= 0; row--) {
 					if(ourBoard[row][colToAdd] == null) {
 						ourBoard[row][colToAdd] = new Piece();
 						ourBoard[row][colToAdd].setColor(color);
 						addedThePiece = true;
+						addedRow = row;
 						break;
 					}
 				}
-				return addedThePiece;
+				return addedRow;
 			}else {
 				//that row is full
 				System.err.println("This column is full, please choose another.");
-				return false;
+				return -1;
 			}
 		} else {
 			//outside normal range
 			System.err.println ("You are trying to add somewhere that is not supported");
-			return false;
+			return -1;
 		}
 	}
 	

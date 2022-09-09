@@ -26,7 +26,7 @@ public class ConnectLogic {
 	public boolean getPlayer1Turn(){
 		return player1Turn;
 	}
-	
+	/*
 	public void startGame() {
 		boolean running = true;
 		
@@ -46,9 +46,9 @@ public class ConnectLogic {
 			Scanner in = new Scanner(System.in);
 			int column = in.nextInt() - 1;
 			
-			boolean success = board.addPiece(column, color);
+			int success = board.addPiece(column, color);
 			
-			if(success) {
+			if(success != -1) {
 				if(checkWinner(column)) {
 					board.printBoard();
 					if(player1Turn) {
@@ -73,9 +73,9 @@ public class ConnectLogic {
 			
 		}
 	}
-	
-	public boolean round(int col) {
-		boolean success = false;
+	*/
+	public int round(int col) {
+		int row = -1;
 		
 		String color;
 		
@@ -85,12 +85,12 @@ public class ConnectLogic {
 			color = color2;
 		}
 		
-		success = board.addPiece(col, color);
+		row = board.addPiece(col, color);
 		
-		if(success) {
+		if(row != -1) {
 			player1Turn = !player1Turn;
 		}
-		return success;
+		return row;
 	}
 	
 	public boolean checkWinner(int column) {
