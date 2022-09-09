@@ -41,7 +41,7 @@ public class GUI extends JFrame {
 			setTitle(title + "Red");
 		}
 		
-		
+		//prova
 		int addedRow = game.round(col);
 		
 		if(addedRow != 0) {
