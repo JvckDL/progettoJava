@@ -14,6 +14,7 @@ public class GUI extends JFrame {
 	int windowHeight = 737;
 	
 	private Container cp;
+	
 	private String imgEmptyFileName = "images/empty.png";
 	private String imgRedFileName = "images/red.png";
 	private String imgYellowName = "images/yellow.png";
@@ -32,18 +33,28 @@ public class GUI extends JFrame {
 		int row10plusCol = Integer.parseInt(button.getName());
 		int col = row10plusCol % 10;
 		
+		
+		boolean player1turn = game.getPlayer1Turn();
+		if(player1turn) {
+			setTitle(title + "Yellow");
+		}else{
+			setTitle(title + "Red");
+		}
+		
+		
 		int addedRow = game.round(col);
 		
-		if(addedRow != -1) {
+		if(addedRow != 0) {
 			
+
 			JButton buttonToUpdate = ((JButton)(cp.getComponent(columns * addedRow + col)));
 			if(game.getPlayer1Turn()) {
 				buttonToUpdate.setIcon(iconYellow);
 			}else {
 				buttonToUpdate.setIcon(iconRed);
+			}
 			if(game.checkWinnerGUI(col)) {
 				JOptionPane.showMessageDialog(null, "You have won!");
-			}
 			}
 		}else {
 			JOptionPane.showMessageDialog(null, "Please select a valid position.");
@@ -86,26 +97,32 @@ public class GUI extends JFrame {
 				JButton button = new JButton();
 				button.setIcon(iconEmpty);
 				button.setPreferredSize(new Dimension(100, 100));
-				button.setName(Integer.toString(row + 10 + col));
+				button.setName(Integer.toString(row * 10 + col));
+				//button.setText("row: " + row + " col: " + col);
 				button.addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
+						//System.out.println(((JButton) (e.getSource())).getText());
 						updateOnButton(((JButton)(e.getSource())));
 					}
 				});
 				cp.add(button);
 			}
 		}
-		// c'e da sistemare il fatto che dice sempre rosso nel nome della finestra, forse e' sbagliato il modo in cui prendo il player1turn
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		boolean player1turn = game.getPlayer1Turn();
-		if(!player1turn) setTitle(title + "Yellow");
-		else setTitle(title + "Red");
 		setLocationRelativeTo(null);
 		setSize(windowWidth, windowHeight);
 		setVisible(true);
+		setResizable(false);
+		
+		boolean player1turn = game.getPlayer1Turn();
+		if(!player1turn) {
+			setTitle(title + "Yellow");
+		}else{
+			setTitle(title + "Red");
+		}
 		
 		updater();
 	}
