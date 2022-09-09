@@ -16,8 +16,8 @@ public class GUI extends JFrame {
 	private Container cp;
 	
 	private String imgEmptyFileName = "images/empty.png";
-	private String imgRedFileName = "images/red.png";
-	private String imgYellowName = "images/yellow.png";
+	private String imgRedFileName = "images/red.jpeg";
+	private String imgYellowName = "images/yellow.jpeg";
 	
 	private ImageIcon iconEmpty = null;
 	private ImageIcon iconRed = null;
