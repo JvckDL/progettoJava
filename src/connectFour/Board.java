@@ -99,13 +99,12 @@ public class Board {
 		if(colToAdd >=0 && colToAdd < columns) {
 			//we can add
 			if(ourBoard[0][colToAdd] == null) {
-				boolean addedThePiece = false;
+				
 				int addedRow = -1;
-				for ( int row = rows -1; row >= 0; row--) {
+				for ( int row = rows -1 ; row >= 0; row--) {
 					if(ourBoard[row][colToAdd] == null) {
 						ourBoard[row][colToAdd] = new Piece();
 						ourBoard[row][colToAdd].setColor(color);
-						addedThePiece = true;
 						addedRow = row;
 						break;
 					}
@@ -122,7 +121,7 @@ public class Board {
 			return -1;
 		}
 	}
-	
+	/*
 	public void printBoard() {
 		for (int col = 0; col < columns + 2; col++) System.out.print("-"); 
 			System.out.println();
@@ -141,7 +140,7 @@ public class Board {
 			for(int col = 0; col < columns + 2; col ++) System.out.print("-");
 			System.out.println();
 	}
-	
+	*/
 	public Board() {
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < columns; col++) {
