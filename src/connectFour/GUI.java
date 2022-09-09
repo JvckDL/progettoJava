@@ -24,30 +24,35 @@ public class GUI extends JFrame {
 	
 	private ConnectLogic game;
 	
-	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new GUI();
-			}
-		});
-		
-	}
+
 	
 	private void updateOnButton(JButton button) {
 		int row10plusCol = Integer.parseInt(button.getName());
 		int row = row10plusCol / 10;
 		int col = row10plusCol % 10;
 		
-		button.setIcon(iconRed);
+		boolean success = game.round(col);
+		
+		if(success) {
+			if(game.getPlayer1Turn()) {
+				button.setIcon(iconYellow);
+			}else {
+				button.setIcon(iconRed);
+			if(game.checkWinnerGUI(col)) {
+				JOptionPane.showMessageDialog(null, "You have won!");
+			}
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Please select a valid position.");
+		}
+		
 	}
 	
 	
 	public GUI() {
 		
 		game = new ConnectLogic("player1", "player2");
-		game.startGame();
+		//game.startGame();
 		
 		URL imgURL = getClass().getClassLoader().getResource(imgEmptyFileName);
 		if (imgURL != null) {
@@ -55,11 +60,19 @@ public class GUI extends JFrame {
 		} else {
 			System.err.println("Couldn't find file" + imgEmptyFileName);
 		}
-		imgURL = getClass().getClassLoader().getResource(imgEmptyFileName);
+		//RED
+		imgURL = getClass().getClassLoader().getResource(imgRedFileName);
 		if (imgURL != null) {
 			iconRed = new ImageIcon(imgURL);
 		} else {
 			System.err.println("Couldn't find file" + imgRedFileName);
+		}
+		//YELLOW
+		imgURL = getClass().getClassLoader().getResource(imgYellowName);
+		if (imgURL != null) {
+			iconYellow = new ImageIcon(imgURL);
+		} else {
+			System.err.println("Couldn't find file" + imgYellowName);
 		}
 		
 		cp = getContentPane();

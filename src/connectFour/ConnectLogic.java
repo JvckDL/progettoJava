@@ -23,6 +23,10 @@ public class ConnectLogic {
 	}
 	
 	
+	public boolean getPlayer1Turn(){
+		return player1Turn;
+	}
+	
 	public void startGame() {
 		boolean running = true;
 		
@@ -77,20 +81,34 @@ public class ConnectLogic {
 		
 		if(player1Turn) {
 			color = color1;
-			System.out.println(player1 + " has won");
 		} else {
 			color = color2;
-			System.out.println(player2 + " has won");
 		}
 		
 		success = board.addPiece(col, color);
 		
+		if(success) {
+			player1Turn = !player1Turn;
+		}
 		return success;
 	}
 	
 	public boolean checkWinner(int column) {
 		String winningColor;
 		if(player1Turn) {
+			winningColor = color1;
+		}else {
+			winningColor = color2;
+		}
+		return board.checkForWinner(column, winningColor);
+	}
+	
+	
+	
+	public boolean checkWinnerGUI(int column) {
+		String winningColor;
+		
+		if(!player1Turn) {
 			winningColor = color1;
 		}else {
 			winningColor = color2;

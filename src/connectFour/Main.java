@@ -11,15 +11,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		GUI gui = new GUI();
-		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				new GUI();
 			}
 		});
-		System.out.println("Enter the name of the first player:");
+			
+		
+		/*System.out.println("Enter the name of the first player:");
 		Scanner in = new Scanner(System.in);
 		player1 = in.next();
 		
@@ -28,7 +28,7 @@ public class Main {
 		System.out.println("Enter the name of the second player: ");
 		Scanner in2 = new Scanner(System.in);
 		player2 = in2.next();
-		
+		*/
 	}
 
 }
