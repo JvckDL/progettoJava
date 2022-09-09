@@ -22,6 +22,8 @@ public class GUI extends JFrame {
 	private ImageIcon iconRed = null;
 	private ImageIcon iconYellow = null;
 	
+	private ConnectLogic game;
+	
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -43,6 +45,9 @@ public class GUI extends JFrame {
 	
 	
 	public GUI() {
+		
+		game = new ConnectLogic("player1", "player2");
+		game.startGame();
 		
 		URL imgURL = getClass().getClassLoader().getResource(imgEmptyFileName);
 		if (imgURL != null) {

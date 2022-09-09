@@ -70,6 +70,24 @@ public class ConnectLogic {
 		}
 	}
 	
+	public boolean round(int col) {
+		boolean success = false;
+		
+		String color;
+		
+		if(player1Turn) {
+			color = color1;
+			System.out.println(player1 + " has won");
+		} else {
+			color = color2;
+			System.out.println(player2 + " has won");
+		}
+		
+		success = board.addPiece(col, color);
+		
+		return success;
+	}
+	
 	public boolean checkWinner(int column) {
 		String winningColor;
 		if(player1Turn) {

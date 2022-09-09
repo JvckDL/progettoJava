@@ -2,6 +2,8 @@ package connectFour;
 
 import java.util.Scanner;
 
+import javax.swing.SwingUtilities;
+
 public class Main {
 	
 	public static String player1;
@@ -20,8 +22,12 @@ public class Main {
 		Scanner in2 = new Scanner(System.in);
 		player2 = in2.next();
 		
-		ConnectLogic game = new ConnectLogic(player1, player2);
-		game.startGame();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new GUI();
+			}
+		});
 	}
 
 }
