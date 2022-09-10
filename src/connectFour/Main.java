@@ -1,8 +1,11 @@
 package connectFour;
 
+import java.awt.EventQueue;
 import java.util.Scanner;
 
 import javax.swing.SwingUtilities;
+
+import connectFour.StartingWindow;
 
 public class Main {
 	
@@ -11,15 +14,27 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		SwingUtilities.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StartingWindow window = new StartingWindow();
+					window.frmConnect.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		/*SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new GUI();
+				new StartingWindow();
 			}
 		});
 			
 		
-		/*System.out.println("Enter the name of the first player:");
+		System.out.println("Enter the name of the first player:");
 		Scanner in = new Scanner(System.in);
 		player1 = in.next();
 		
