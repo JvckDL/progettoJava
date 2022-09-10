@@ -3,6 +3,7 @@ package connectFour;
 import java.awt.EventQueue;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import connectFour.StartingWindow;
@@ -18,9 +19,7 @@ public class Main {
 			public void run() {
 				try {
 					StartingWindow window = new StartingWindow();
-					window.frmConnect.setVisible(true);
-					//player1 = window.getNamePla1();
-					//player2 = window.getNamePla2();
+					window.frmConnect.setVisible(true);					
 					
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -18,12 +18,17 @@ public class GUI extends JFrame implements ActionListener {
 	private String imgEmptyFileName = "images/empty.png";
 	private String imgRedFileName = "images/red.jpeg";
 	private String imgYellowName = "images/yellow.jpeg";
+	private String imgBackGround = "images/sfondo.jpeg";
 	
+	private ImageIcon iconBackground = null;
 	private ImageIcon iconEmpty = null;
 	private ImageIcon iconRed = null;
 	private ImageIcon iconYellow = null;
 	
 	protected JMenuItem aboutItem;
+	protected JMenuItem loadItem;
+	protected JMenuItem saveItem;
+	protected JMenuItem exitItem;
 	
 	private String title = "Connect Four - ";
 	
@@ -33,74 +38,9 @@ public class GUI extends JFrame implements ActionListener {
 	
 	private ConnectLogic game;
 	
-	private static JMenuBar menuBar;
-    private static JMenuItem saveItem;
-    private static JMenuItem loadItem;
-    //private static JMenuItem aboutItem;
-    private static JMenuItem exitItem;
-    
-    
-    //private static JFrame GUI;
-	
-
-
-	private void updateOnButton(JButton button) {
-		int row10plusCol = Integer.parseInt(button.getName());
-		int col = row10plusCol % 10;
-		
-		/*
-		boolean player1turn = game.getPlayer1Turn();
-		if(player1turn) {
-			//setTitle(title + player1);
-			setTitle(title + "Yellow");
-		}else {
-			setTitle(title + "Red");
-		}
-		*/
-		boolean playersTurn = game.getPlayer1Turn();
-		if(playersTurn) {
-			setTitle(title + player2 + ": Yellow");
-		}else{
-			//setTitle(title + player2);
-			setTitle(title + player1 + ": Red");
-		}
-
-		int addedRow = game.round(col);
-		
-		if(addedRow != 0) {
-			
-
-			JButton buttonToUpdate = ((JButton)(cp.getComponent(columns * addedRow + col)));
-			if(game.getPlayer1Turn()) {
-				buttonToUpdate.setIcon(iconYellow);
-			}else {
-				buttonToUpdate.setIcon(iconRed);
-			}
-			if(game.checkWinnerGUI(col)) {
-				int input = JOptionPane.showOptionDialog(null, "You have won! Do you want to play again?", "GAME ENDED", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-				if(input == JOptionPane.OK_OPTION)
-				{
-					this.dispose();
-					Main.main(null);
-				}else {
-					System.exit(0);
-				}
-			}
-		}else {
-			JOptionPane.showMessageDialog(null, "Please select a valid position.");
-		}
-		
-	}
-	
 	
 	public GUI(){
-		
-		/*menuBar = new JMenuBar();
-		menuBar.setBackground(SystemColor.menu);
-		menuBar.setForeground(new Color(255, 255, 255));
-		JMenu gameSettings = new JMenu("Game Settings");
-		JMenu help = new JMenu("Help");
-		
+		/*		
 		loadItem = new JMenuItem("Load");
 		saveItem = new JMenuItem("Save");
 		exitItem = new JMenuItem("Exit");
@@ -121,16 +61,24 @@ public class GUI extends JFrame implements ActionListener {
 		aboutItem.addActionListener(this);
 		*/
 		
-		game = new ConnectLogic("player1", "player2");
+		game = new ConnectLogic(player1, player2);
 		//game.startGame();
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.menu);
 		menuBar.setForeground(new Color(255, 255, 255));
 		JMenu help = new JMenu("Help");
+		JMenu gameSettings = new JMenu("Game Settings");
 		aboutItem = new JMenuItem("About");
+		loadItem = new JMenuItem("Load");
+		saveItem = new JMenuItem("Save");
+		exitItem = new JMenuItem("Exit");
 		
+		menuBar.add(gameSettings);
 		menuBar.add(help);
+		gameSettings.add(loadItem);
+		gameSettings.add(saveItem);
+		gameSettings.add(exitItem);
 		help.add(aboutItem);
 		
 		
@@ -138,7 +86,14 @@ public class GUI extends JFrame implements ActionListener {
 		
 		
 		this.setJMenuBar(menuBar);
-			
+		
+		URL imgURLIcon = getClass().getClassLoader().getResource(imgBackGround);
+		if (imgURLIcon != null) {
+			iconBackground = new ImageIcon(imgURLIcon);
+		} else {
+			System.err.println("Couldn't find file" + imgBackGround);
+		}
+		
 		URL imgURL = getClass().getClassLoader().getResource(imgEmptyFileName);
 		if (imgURL != null) {
 			iconEmpty = new ImageIcon(imgURL);
@@ -189,7 +144,7 @@ public class GUI extends JFrame implements ActionListener {
 		
 		
 		
-		
+		setIconImage(new ImageIcon(imgURLIcon).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -224,6 +179,62 @@ public class GUI extends JFrame implements ActionListener {
 		updater();
 		}
 	//}
+	
+	private void updateOnButton(JButton button) {
+		int row10plusCol = Integer.parseInt(button.getName());
+		int col = row10plusCol % 10;
+		String winnerPlayer;
+		
+		/*
+		boolean player1turn = game.getPlayer1Turn();
+		if(player1turn) {
+			//setTitle(title + player1);
+			setTitle(title + "Yellow");
+		}else {
+			setTitle(title + "Red");
+		}
+		*/
+		boolean playersTurn = game.getPlayer1Turn();
+		if(playersTurn) {
+			setTitle(title + player2 + ": Yellow");
+		}else{
+			//setTitle(title + player2);
+			setTitle(title + player1 + ": Red");
+		}
+
+		int addedRow = game.round(col);
+		
+		if(addedRow != 0) {
+			
+
+			JButton buttonToUpdate = ((JButton)(cp.getComponent(columns * addedRow + col)));
+			if(game.getPlayer1Turn()) {
+				buttonToUpdate.setIcon(iconYellow);
+			}else {
+				buttonToUpdate.setIcon(iconRed);
+			}
+			if(game.checkWinnerGUI(col)) {
+				if(playersTurn == false) {
+					winnerPlayer = player2;
+				}else {
+					winnerPlayer = player1;
+				}
+				int input = JOptionPane.showOptionDialog(null, winnerPlayer + " has won! Do you want to play again?", "GAME ENDED", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				if(input == JOptionPane.OK_OPTION)
+				{
+					this.dispose();
+					Main.main(null);
+				}else {
+					System.exit(0);
+				}
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Please enter a valid position", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+	
+	
 	
 	public void updater() {
 		cp.getComponent(1);

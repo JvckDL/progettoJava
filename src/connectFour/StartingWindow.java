@@ -55,9 +55,14 @@ public class StartingWindow implements ActionListener{
 		
 		frmConnect = new JFrame();
 		frmConnect.setBackground(SystemColor.text);
-		//frmConnect.setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Eclipse\\Workspace\\Connect4\\img\\sfondo.jpeg"));
-		frmConnect.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\matti\\git\\progettoJava\\src\\images\\sfondo.jpeg"));
-		//frmConnect.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\paffo\\git\\Connect4\\Connect4\\img\\sfondo.jpeg"));
+
+		URL imgURL = getClass().getClassLoader().getResource(imgBackGround);
+		if (imgURL != null) {
+			iconBackground = new ImageIcon(imgURL);
+		} else {
+			System.err.println("Couldn't find file" + imgBackGround);
+		}
+		frmConnect.setIconImage(new ImageIcon(imgURL).getImage());
 		frmConnect.setTitle("Connect4");
 		frmConnect.setBounds(100, 100, 560, 706);
 		frmConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,20 +108,14 @@ public class StartingWindow implements ActionListener{
 		NamePlayer2 = new JTextField();
 		NamePlayer2.setBounds(242, 191, 139, 20);
 		panel.add(NamePlayer2);
-		NamePlayer2.setColumns(10);
+		NamePlayer2.setColumns(10);		
 		
 		
 		
-		URL imgURL = getClass().getClassLoader().getResource(imgBackGround);
-		if (imgURL != null) {
-			iconBackground = new ImageIcon(imgURL);
-		} else {
-			System.err.println("Couldn't find file" + imgBackGround);
-		}
 		
-		//JLabel label = new JLabel(new ImageIcon("D:\\\\Eclipse\\\\Workspace\\\\Connect4\\\\img\\\\sfondo.jpeg"));
-		JLabel label = new JLabel(new ImageIcon("C:\\Users\\matti\\git\\progettoJava\\src\\images\\sfondo.jpeg"));
-		//JLabel label = new JLabel(new ImageIcon("C:\\Users\\paffo\\git\\Connect4\\Connect4\\img\\sfondo.jpeg"));
+		JLabel label = new JLabel();
+		label.setIcon(iconBackground);
+		
 		label.setBounds(0, 0, 544, 644);
 		panel.add(label);
 		panel.setBounds(0, 0, 544, 644);
@@ -153,19 +152,21 @@ public class StartingWindow implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		NamePla1 = NamePlayer1.getText();
-		
-		NamePla2 = NamePlayer2.getText();
+		if(NamePlayer1.getText().isEmpty() || NamePlayer2.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Please enter both player's names", "Error", JOptionPane.ERROR_MESSAGE);
+		}else {
+			NamePla1 = NamePlayer1.getText();
+			
+			NamePla2 = NamePlayer2.getText();
+			if(e.getSource()==StartGameBtn) {
+				GUI myGUI = new GUI();
+				frmConnect.dispose();
+			}
+		}
 		
 		if(e.getSource()==aboutItem) {
 			JOptionPane.showMessageDialog(null, "Connect4 Game: v.1.0 \nMade by: JvckDL & MattiaGio", "About", JOptionPane.INFORMATION_MESSAGE);
 		}
-		
-		if(e.getSource()==StartGameBtn) {
-			
-			GUI myGUI = new GUI();
-			frmConnect.dispose();
-		}
-		
+
 	}
 }

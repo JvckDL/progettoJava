@@ -75,7 +75,7 @@ public class ConnectLogic {
 	}
 	*/
 	public int round(int col) {
-		int row = -1;
+		int row = -1;	//funziona anche con = 0
 		
 		String color;
 		
