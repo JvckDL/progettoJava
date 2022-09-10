@@ -26,9 +26,7 @@ public class GUI extends JFrame {
 	private String title = "Connect Four - ";
 	
 	private ConnectLogic game;
-	
 
-	
 	private void updateOnButton(JButton button) {
 		int row10plusCol = Integer.parseInt(button.getName());
 		int col = row10plusCol % 10;
@@ -59,7 +57,14 @@ public class GUI extends JFrame {
 				buttonToUpdate.setIcon(iconRed);
 			}
 			if(game.checkWinnerGUI(col)) {
-				JOptionPane.showMessageDialog(null, "You have won!");
+				int input = JOptionPane.showOptionDialog(null, "You have won! Do you want to play again?", "GAME ENDED", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				if(input == JOptionPane.OK_OPTION)
+				{
+					//devo mettere il comando per richiamare il metodo GUI e far ripartire il gioco
+					Main.main(null);
+				}else {
+					System.exit(0);
+				}
 			}
 		}else {
 			JOptionPane.showMessageDialog(null, "Please select a valid position.");
@@ -72,7 +77,7 @@ public class GUI extends JFrame {
 		
 		game = new ConnectLogic("player1", "player2");
 		//game.startGame();
-		
+			
 		URL imgURL = getClass().getClassLoader().getResource(imgEmptyFileName);
 		if (imgURL != null) {
 			iconEmpty = new ImageIcon(imgURL);
@@ -127,10 +132,10 @@ public class GUI extends JFrame {
 			setTitle(title + "Red");
 		}
 
-		setLocationRelativeTo(null);
 		setSize(windowWidth, windowHeight);
 		setVisible(true);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		
 		boolean prova = game.getPlayer1Turn();
 		if(!prova) {
