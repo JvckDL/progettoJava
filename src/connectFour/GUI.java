@@ -40,22 +40,28 @@ public class GUI extends JFrame implements ActionListener {
     //private static JFrame GUI;
 	
 
-	
+
 	private void updateOnButton(JButton button) {
 		int row10plusCol = Integer.parseInt(button.getName());
 		int col = row10plusCol % 10;
 		
-		
+		/*
 		boolean player1turn = game.getPlayer1Turn();
 		if(player1turn) {
 			//setTitle(title + player1);
+			setTitle(title + "Yellow");
+		}else {
+			setTitle(title + "Red");
+		}
+		*/
+		boolean playersTurn = game.getPlayer1Turn();
+		if(playersTurn) {
 			setTitle(title + "Yellow");
 		}else{
 			//setTitle(title + player2);
 			setTitle(title + "Red");
 		}
-		
-		//prova
+
 		int addedRow = game.round(col);
 		
 		if(addedRow != 0) {
@@ -68,7 +74,14 @@ public class GUI extends JFrame implements ActionListener {
 				buttonToUpdate.setIcon(iconRed);
 			}
 			if(game.checkWinnerGUI(col)) {
-				JOptionPane.showMessageDialog(null, "You have won!");
+				int input = JOptionPane.showOptionDialog(null, "You have won! Do you want to play again?", "GAME ENDED", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				if(input == JOptionPane.OK_OPTION)
+				{
+					//devo mettere il comando per richiamare il metodo GUI e far ripartire il gioco
+					Main.main(null);
+				}else {
+					System.exit(0);
+				}
 			}
 		}else {
 			JOptionPane.showMessageDialog(null, "Please select a valid position.");
@@ -107,7 +120,7 @@ public class GUI extends JFrame implements ActionListener {
 		
 		game = new ConnectLogic("player1", "player2");
 		//game.startGame();
-		
+			
 		URL imgURL = getClass().getClassLoader().getResource(imgEmptyFileName);
 		if (imgURL != null) {
 			iconEmpty = new ImageIcon(imgURL);
@@ -138,6 +151,8 @@ public class GUI extends JFrame implements ActionListener {
 				button.setIcon(iconEmpty);
 				button.setPreferredSize(new Dimension(100, 100));
 				button.setName(Integer.toString(row * 10 + col));
+
+
 				//button.setText("row: " + row + " col: " + col);
 				button.addActionListener(new ActionListener() {
 					
@@ -146,32 +161,51 @@ public class GUI extends JFrame implements ActionListener {
 						// TODO Auto-generated method stub
 						//System.out.println(((JButton) (e.getSource())).getText());
 						updateOnButton(((JButton)(e.getSource())));
+						
 					}
 				});
 				cp.add(button);
 			}
 		}
+
 		
 		
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		boolean player1turn = game.getPlayer1Turn();
+		if(!player1turn) {
+			setTitle(title + "Yellow");
+		}else {
+			setTitle(title + "Red");
+		}
+
+
 		setSize(windowWidth, windowHeight);
 		setVisible(true);
 		setResizable(false);
+		setLocationRelativeTo(null);
+		
+
 		
 		
-		
-		boolean player1turn = game.getPlayer1Turn();
-		if(!player1turn) {
+		/*boolean playersTurn = game.getPlayer1Turn();
+		if(!playersTurn) {
+*/
+		boolean playersTurn = game.getPlayer1Turn();
+		if(!playersTurn) {
+
 			setTitle(title + "Yellow");
 		}else{
 			setTitle(title + "Red");
 		}
 		
 		updater();
-	}
+		}
+	//}
 	
 	public void updater() {
 		cp.getComponent(1);
