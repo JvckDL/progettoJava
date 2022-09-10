@@ -40,14 +40,13 @@ public class GUI extends JFrame {
 			setTitle(title + "Red");
 		}
 		
-		boolean player1turn = game.getPlayer1Turn();
-		if(player1turn) {
+		boolean prova = game.getPlayer1Turn();
+		if(prova) {
 			setTitle(title + "Yellow");
 		}else{
 			setTitle(title + "Red");
 		}
-		
-		
+
 		int addedRow = game.round(col);
 		
 		if(addedRow != 0) {
@@ -133,8 +132,8 @@ public class GUI extends JFrame {
 		setVisible(true);
 		setResizable(false);
 		
-		boolean player1turn = game.getPlayer1Turn();
-		if(!player1turn) {
+		boolean prova = game.getPlayer1Turn();
+		if(!prova) {
 			setTitle(title + "Yellow");
 		}else{
 			setTitle(title + "Red");
