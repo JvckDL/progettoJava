@@ -7,6 +7,17 @@ public class Board {
 	
 	Piece [][]ourBoard = new Piece [rows][columns];
 	
+	
+	
+	
+	public Board() {
+		for (int row = 0; row < rows; row++) {
+			for (int col = 0; col < columns; col++) {
+				ourBoard[row][col] = null;
+			}
+		}
+	}
+	
 	public static int getColumns() {
 		return columns;
 	}
@@ -121,32 +132,7 @@ public class Board {
 			return -1;
 		}
 	}
-	/*
-	public void printBoard() {
-		for (int col = 0; col < columns + 2; col++) System.out.print("-"); 
-			System.out.println();
-			for (int row = 0; row < rows; row++) {
-				System.out.print("|");
-				for (int col = 0; col < columns; col++) {
-					if (ourBoard[row][col] == null) {
-						System.out.print("_");
-					} else {
-						System.out.print(ourBoard[row][col].getColor());
-					}
-					System.out.print("|");
-				}
-				System.out.println();					
-		}
-			for(int col = 0; col < columns + 2; col ++) System.out.print("-");
-			System.out.println();
-	}
-	*/
-	public Board() {
-		for (int row = 0; row < rows; row++) {
-			for (int col = 0; col < columns; col++) {
-				ourBoard[row][col] = null;
-			}
-		}
-	}
+	
+	
 
 }

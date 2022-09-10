@@ -6,7 +6,7 @@ import java.net.URL;
 
 import javax.swing.*;
 
-public class GUI extends JFrame implements ActionListener {
+public class GUI extends JFrame implements ActionListener, java.io.Serializable{
 	
 	int rows = 7;
 	int columns = 6;
@@ -30,6 +30,7 @@ public class GUI extends JFrame implements ActionListener {
 	protected JMenuItem saveItem;
 	protected JMenuItem exitItem;
 	
+	
 	private String title = "Connect Four - ";
 	
 	private final String player1 = StartingWindow.NamePla1;
@@ -40,29 +41,8 @@ public class GUI extends JFrame implements ActionListener {
 	
 	
 	public GUI(){
-		/*		
-		loadItem = new JMenuItem("Load");
-		saveItem = new JMenuItem("Save");
-		exitItem = new JMenuItem("Exit");
-		
-		aboutItem = new JMenuItem("About");
-		
-
-		menuBar.add(gameSettings);
-		menuBar.add(help);
-		gameSettings.add(loadItem);
-		gameSettings.add(saveItem);
-		gameSettings.add(exitItem);
-		help.add(aboutItem);
-		
-		loadItem.addActionListener(this);
-		saveItem.addActionListener(this);
-		exitItem.addActionListener(this);
-		aboutItem.addActionListener(this);
-		*/
 		
 		game = new ConnectLogic(player1, player2);
-		//game.startGame();
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.menu);
@@ -83,6 +63,7 @@ public class GUI extends JFrame implements ActionListener {
 		
 		
 		aboutItem.addActionListener(this);
+		exitItem.addActionListener(this);
 		
 		
 		this.setJMenuBar(menuBar);
@@ -126,13 +107,11 @@ public class GUI extends JFrame implements ActionListener {
 				button.setName(Integer.toString(row * 10 + col));
 
 
-				//button.setText("row: " + row + " col: " + col);
+
 				button.addActionListener(new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						//System.out.println(((JButton) (e.getSource())).getText());
 						updateOnButton(((JButton)(e.getSource())));
 						
 					}
@@ -163,11 +142,6 @@ public class GUI extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		
 
-		
-		
-		/*boolean playersTurn = game.getPlayer1Turn();
-		if(!playersTurn) {
-*/
 		boolean playersTurn = game.getPlayer1Turn();
 		if(!playersTurn) {
 
@@ -178,33 +152,24 @@ public class GUI extends JFrame implements ActionListener {
 		
 		updater();
 		}
-	//}
+	
 	
 	private void updateOnButton(JButton button) {
 		int row10plusCol = Integer.parseInt(button.getName());
 		int col = row10plusCol % 10;
 		String winnerPlayer;
 		
-		/*
-		boolean player1turn = game.getPlayer1Turn();
-		if(player1turn) {
-			//setTitle(title + player1);
-			setTitle(title + "Yellow");
-		}else {
-			setTitle(title + "Red");
-		}
-		*/
+
 		boolean playersTurn = game.getPlayer1Turn();
 		if(playersTurn) {
 			setTitle(title + player2 + ": Yellow");
 		}else{
-			//setTitle(title + player2);
 			setTitle(title + player1 + ": Red");
 		}
 
 		int addedRow = game.round(col);
 		
-		if(addedRow != 0) {
+		if(addedRow != -1) {
 			
 
 			JButton buttonToUpdate = ((JButton)(cp.getComponent(columns * addedRow + col)));
@@ -229,6 +194,7 @@ public class GUI extends JFrame implements ActionListener {
 				}
 			}
 		}else {
+			getToolkit().beep();
 			JOptionPane.showMessageDialog(null, "Please enter a valid position", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
@@ -239,25 +205,14 @@ public class GUI extends JFrame implements ActionListener {
 	public void updater() {
 		cp.getComponent(1);
 	}
-	
-	/*
-	public void actionPerformed( ActionEvent e ) {
-    	if(e.getSource()==aboutItem) {
-			JOptionPane.showMessageDialog(null, "Connect4 Game: v.1.0 \nMade by: JvckDL & MattiaGio", "About", JOptionPane.INFORMATION_MESSAGE);
-		}
-    	if(e.getSource()==exitItem) {
-			if (JOptionPane.showOptionDialog(this, "You will exit the game without saving\nDo you want to continue?", "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null) == JOptionPane.YES_OPTION) {
-				this.dispose();
-			} else {
-			
-			}	
-    	}
-	}*/
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource()==saveItem) {
+		
+		}
 		if(e.getSource()==aboutItem) {
 			JOptionPane.showMessageDialog(null, "Connect4 Game: v.1.0 \nMade by: JvckDL & MattiaGio", "About", JOptionPane.INFORMATION_MESSAGE);
 		}
@@ -267,6 +222,7 @@ public class GUI extends JFrame implements ActionListener {
 			} else {
 			
 			}	
+    	}
 		
 	}
 

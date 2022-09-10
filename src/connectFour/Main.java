@@ -1,9 +1,7 @@
 package connectFour;
 
 import java.awt.EventQueue;
-import java.util.Scanner;
 
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import connectFour.StartingWindow;
@@ -27,24 +25,6 @@ public class Main {
 			}
 		});
 		
-		/*SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new StartingWindow();
-			}
-		});
-			
-		
-		System.out.println("Enter the name of the first player:");
-		Scanner in = new Scanner(System.in);
-		player1 = in.next();
-		
-		//System.out.println(player1.getClass().getSimpleName());
-		
-		System.out.println("Enter the name of the second player: ");
-		Scanner in2 = new Scanner(System.in);
-		player2 = in2.next();
-		*/
 	}
 
 }
