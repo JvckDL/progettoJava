@@ -152,6 +152,10 @@ public class StartingWindow implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		if(e.getSource()==aboutItem) {
+			JOptionPane.showMessageDialog(null, "Connect4 Game: v.1.0 \nMade by: JvckDL & MattiaGio", "About", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
 		if(NamePlayer1.getText().isEmpty() || NamePlayer2.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter both player's names", "Error", JOptionPane.ERROR_MESSAGE);
 		}else {
@@ -164,9 +168,6 @@ public class StartingWindow implements ActionListener{
 			}
 		}
 		
-		if(e.getSource()==aboutItem) {
-			JOptionPane.showMessageDialog(null, "Connect4 Game: v.1.0 \nMade by: JvckDL & MattiaGio", "About", JOptionPane.INFORMATION_MESSAGE);
-		}
 
 	}
 }
