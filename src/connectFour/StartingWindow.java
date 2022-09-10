@@ -81,32 +81,31 @@ public class StartingWindow implements ActionListener{
 		StartGameBtn.addActionListener(this);
 		
 		JLabel Player1Label = new JLabel("Player 1:");
-		Player1Label.setBounds(173, 223, 59, 14);
+		Player1Label.setBounds(173, 145, 59, 14);
 		panel.add(Player1Label);
 		Player1Label.setFont(new Font("Tahoma", Font.BOLD, 13));
-		Player1Label.setBackground(new Color(255, 0, 255));
-		Player1Label.setForeground(new Color(0, 0, 255));
+		Player1Label.setForeground(new Color(255, 0, 0));
 		
 				
 				
 		JLabel Player2Label = new JLabel("Player 2:");
-		Player2Label.setBounds(173, 260, 59, 14);
+		Player2Label.setBounds(173, 193, 59, 14);
 		panel.add(Player2Label);
-		Player2Label.setForeground(new Color(0, 255, 0));
+		Player2Label.setForeground(new Color(255, 255, 0));
 		Player2Label.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
+		NamePlayer1 = new JTextField();
+		NamePlayer1.setBounds(242, 143, 139, 20);
+		panel.add(NamePlayer1);
+		NamePlayer1.setColumns(10);
+		
+		
 		NamePlayer2 = new JTextField();
-		NamePlayer2.setBounds(242, 258, 139, 20);
+		NamePlayer2.setBounds(242, 191, 139, 20);
 		panel.add(NamePlayer2);
 		NamePlayer2.setColumns(10);
 		
-		NamePla2 = NamePlayer2.getText();
 		
-		NamePlayer1 = new JTextField();
-		NamePlayer1.setBounds(242, 221, 139, 20);
-		panel.add(NamePlayer1);
-		NamePlayer1.setColumns(10);
-		NamePla1 = NamePlayer1.getText();
 		
 		URL imgURL = getClass().getClassLoader().getResource(imgBackGround);
 		if (imgURL != null) {
@@ -143,16 +142,20 @@ public class StartingWindow implements ActionListener{
 	}
 	
 	
-	public String getNamePla2(String Name) {
+	public String getNamePla2() {
 		return NamePla2;
 	}
 	
-	public String getNamePla1(String Name) {
+	public String getNamePla1() {
 		return NamePla1;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		NamePla1 = NamePlayer1.getText();
+		
+		NamePla2 = NamePlayer2.getText();
 		
 		if(e.getSource()==aboutItem) {
 			JOptionPane.showMessageDialog(null, "Connect4 Game: v.1.0 \nMade by: JvckDL & MattiaGio", "About", JOptionPane.INFORMATION_MESSAGE);

@@ -27,15 +27,16 @@ public class GUI extends JFrame implements ActionListener {
 	
 	private String title = "Connect Four - ";
 	
-	//private final String player1 = StartingWindow.NamePla1;
-	//private String player2 = StartingWindow.NamePla2;
+	private final String player1 = StartingWindow.NamePla1;
+	
+	private String player2 = StartingWindow.NamePla2;
 	
 	private ConnectLogic game;
 	
 	private static JMenuBar menuBar;
     private static JMenuItem saveItem;
     private static JMenuItem loadItem;
-    private static JMenuItem aboutItem;
+    //private static JMenuItem aboutItem;
     private static JMenuItem exitItem;
     
     
@@ -58,10 +59,10 @@ public class GUI extends JFrame implements ActionListener {
 		*/
 		boolean playersTurn = game.getPlayer1Turn();
 		if(playersTurn) {
-			setTitle(title + "Yellow");
+			setTitle(title + player2 + ": Yellow");
 		}else{
 			//setTitle(title + player2);
-			setTitle(title + "Red");
+			setTitle(title + player1 + ": Red");
 		}
 
 		int addedRow = game.round(col);
@@ -94,7 +95,7 @@ public class GUI extends JFrame implements ActionListener {
 	
 	public GUI(){
 		
-		menuBar = new JMenuBar();
+		/*menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.menu);
 		menuBar.setForeground(new Color(255, 255, 255));
 		JMenu gameSettings = new JMenu("Game Settings");
@@ -118,7 +119,7 @@ public class GUI extends JFrame implements ActionListener {
 		saveItem.addActionListener(this);
 		exitItem.addActionListener(this);
 		aboutItem.addActionListener(this);
-		
+		*/
 		
 		game = new ConnectLogic("player1", "player2");
 		//game.startGame();
@@ -195,9 +196,9 @@ public class GUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		boolean player1turn = game.getPlayer1Turn();
 		if(!player1turn) {
-			setTitle(title + "Yellow");
+			setTitle(title + player2 + ": Yellow");
 		}else {
-			setTitle(title + "Red");
+			setTitle(title + player1 + ": Red");
 		}
 
 
@@ -215,9 +216,9 @@ public class GUI extends JFrame implements ActionListener {
 		boolean playersTurn = game.getPlayer1Turn();
 		if(!playersTurn) {
 
-			setTitle(title + "Yellow");
+			setTitle(title + player2+ ": Yellow");
 		}else{
-			setTitle(title + "Red");
+			setTitle(title + player1+": Red");
 		}
 		
 		updater();
@@ -228,6 +229,7 @@ public class GUI extends JFrame implements ActionListener {
 		cp.getComponent(1);
 	}
 	
+	/*
 	public void actionPerformed( ActionEvent e ) {
     	if(e.getSource()==aboutItem) {
 			JOptionPane.showMessageDialog(null, "Connect4 Game: v.1.0 \nMade by: JvckDL & MattiaGio", "About", JOptionPane.INFORMATION_MESSAGE);
@@ -239,7 +241,7 @@ public class GUI extends JFrame implements ActionListener {
 			
 			}	
     	}
-	}
+	}*/
 
 
 	@Override

@@ -19,6 +19,8 @@ public class Main {
 				try {
 					StartingWindow window = new StartingWindow();
 					window.frmConnect.setVisible(true);
+					//player1 = window.getNamePla1();
+					//player2 = window.getNamePla2();
 					
 				} catch (Exception e) {
 					e.printStackTrace();
