@@ -11,7 +11,7 @@ public class GUI extends JFrame implements ActionListener {
 	int rows = 7;
 	int columns = 6;
 	int windowWidth = 616;
-	int windowHeight = 737;
+	int windowHeight = 760;
 	
 	private Container cp;
 	
@@ -22,6 +22,8 @@ public class GUI extends JFrame implements ActionListener {
 	private ImageIcon iconEmpty = null;
 	private ImageIcon iconRed = null;
 	private ImageIcon iconYellow = null;
+	
+	protected JMenuItem aboutItem;
 	
 	private String title = "Connect Four - ";
 	
@@ -77,7 +79,7 @@ public class GUI extends JFrame implements ActionListener {
 				int input = JOptionPane.showOptionDialog(null, "You have won! Do you want to play again?", "GAME ENDED", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				if(input == JOptionPane.OK_OPTION)
 				{
-					//devo mettere il comando per richiamare il metodo GUI e far ripartire il gioco
+					this.dispose();
 					Main.main(null);
 				}else {
 					System.exit(0);
@@ -90,7 +92,7 @@ public class GUI extends JFrame implements ActionListener {
 	}
 	
 	
-	public GUI() {
+	public GUI(){
 		
 		menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.menu);
@@ -120,6 +122,21 @@ public class GUI extends JFrame implements ActionListener {
 		
 		game = new ConnectLogic("player1", "player2");
 		//game.startGame();
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(SystemColor.menu);
+		menuBar.setForeground(new Color(255, 255, 255));
+		JMenu help = new JMenu("Help");
+		aboutItem = new JMenuItem("About");
+		
+		menuBar.add(help);
+		help.add(aboutItem);
+		
+		
+		aboutItem.addActionListener(this);
+		
+		
+		this.setJMenuBar(menuBar);
 			
 		URL imgURL = getClass().getClassLoader().getResource(imgEmptyFileName);
 		if (imgURL != null) {
@@ -222,6 +239,13 @@ public class GUI extends JFrame implements ActionListener {
 			
 			}	
     	}
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
