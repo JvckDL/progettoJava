@@ -8,9 +8,6 @@ import connectFour.StartingWindow;
 
 public class Main {
 	
-	public static String player1;
-	public static String player2;
-
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {

@@ -2,11 +2,13 @@ package connectFour;
 
 
 public class ConnectLogic {
+	public String color1 = "R";
+	public String color2 = "Y";
 	public Board board;
 	public String player1;
 	public String player2;
-	public String color1 = "R";
-	public String color2 = "Y";
+	
+	
 	
 	private boolean player1Turn = true;
 	
@@ -27,7 +29,7 @@ public class ConnectLogic {
 	}
 	
 	public int round(int col) {
-		int row = -1;	//funziona anche con = 0
+		int row = -1;
 		
 		String color;
 		
