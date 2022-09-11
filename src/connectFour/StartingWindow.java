@@ -68,6 +68,7 @@ public class StartingWindow implements ActionListener{
 		frmConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmConnect.getContentPane().setLayout(null);
 		frmConnect.setLocationRelativeTo( null );
+		frmConnect.setResizable(false);
 		frmConnect.setBackground(Color.YELLOW);
 		
 
