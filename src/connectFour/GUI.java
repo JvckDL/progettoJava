@@ -10,21 +10,21 @@ public class GUI extends JFrame implements ActionListener{
 	
 	int ROWS = 7;
 	int COLUMNS = 6;
-	int windowWidth = 616;
-	int windowHeight = 760;
+	int WINDOWWIDTH = 616;
+	int WINDOWHEIGHT = 760;
 
 	
-	private String imgEmptyFileName = "images/empty.png";
-	private String imgRedFileName = "images/red.jpeg";
-	private String imgYellowName = "images/yellow.jpeg";
-	private String imgBackGround = "images/sfondo.jpeg";
+	private String IMGEMPTYFILENAME = "images/empty.png";
+	private String IMGREDFILENAME = "images/red.jpeg";
+	private String IMGYELLOWFILENAME = "images/yellow.jpeg";
+	private String IMGBACKGROUND = "images/sfondo.jpeg";
 	
 	private ImageIcon iconBackground = null;
 	private ImageIcon iconEmpty = null;
 	private ImageIcon iconRed = null;
 	private ImageIcon iconYellow = null;
 	
-	private String title = "Connect Four - ";
+	private String TITLE = "Connect Four - ";
 	
 	private Container cp;
 	
@@ -69,32 +69,32 @@ public class GUI extends JFrame implements ActionListener{
 		
 		this.setJMenuBar(menuBar);
 		
-		URL imgURLIcon = getClass().getClassLoader().getResource(imgBackGround);
+		URL imgURLIcon = getClass().getClassLoader().getResource(IMGBACKGROUND);
 		if (imgURLIcon != null) {
 			iconBackground = new ImageIcon(imgURLIcon);
 		} else {
-			System.err.println("Couldn't find file" + imgBackGround);
+			System.err.println("Couldn't find file" + IMGBACKGROUND);
 		}
 		
-		URL imgURL = getClass().getClassLoader().getResource(imgEmptyFileName);
+		URL imgURL = getClass().getClassLoader().getResource(IMGEMPTYFILENAME);
 		if (imgURL != null) {
 			iconEmpty = new ImageIcon(imgURL);
 		} else {
-			System.err.println("Couldn't find file" + imgEmptyFileName);
+			System.err.println("Couldn't find file" + IMGEMPTYFILENAME);
 		}
 		//RED
-		imgURL = getClass().getClassLoader().getResource(imgRedFileName);
+		imgURL = getClass().getClassLoader().getResource(IMGREDFILENAME);
 		if (imgURL != null) {
 			iconRed = new ImageIcon(imgURL);
 		} else {
-			System.err.println("Couldn't find file" + imgRedFileName);
+			System.err.println("Couldn't find file" + IMGREDFILENAME);
 		}
 		//YELLOW
-		imgURL = getClass().getClassLoader().getResource(imgYellowName);
+		imgURL = getClass().getClassLoader().getResource(IMGYELLOWFILENAME);
 		if (imgURL != null) {
 			iconYellow = new ImageIcon(imgURL);
 		} else {
-			System.err.println("Couldn't find file" + imgYellowName);
+			System.err.println("Couldn't find file" + IMGYELLOWFILENAME);
 		}
 		
 		cp = getContentPane();
@@ -131,13 +131,13 @@ public class GUI extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		boolean player1turn = game.getPlayer1Turn();
 		if(!player1turn) {
-			setTitle(title + player2 + ": Yellow");
+			setTitle(TITLE + player2 + ": Yellow");
 		}else {
-			setTitle(title + player1 + ": Red");
+			setTitle(TITLE + player1 + ": Red");
 		}
 
 
-		setSize(windowWidth, windowHeight);
+		setSize(WINDOWWIDTH, WINDOWHEIGHT);
 		setVisible(true);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -146,9 +146,9 @@ public class GUI extends JFrame implements ActionListener{
 		boolean playersTurn = game.getPlayer1Turn();
 		if(!playersTurn) {
 
-			setTitle(title + player2+ ": Yellow");
+			setTitle(TITLE + player2+ ": Yellow");
 		}else{
-			setTitle(title + player1+": Red");
+			setTitle(TITLE + player1+": Red");
 		}
 	}
 	
@@ -160,9 +160,9 @@ public class GUI extends JFrame implements ActionListener{
 
 		boolean playersTurn = game.getPlayer1Turn();
 		if(playersTurn) {
-			setTitle(title + player2 + ": Yellow");
+			setTitle(TITLE + player2 + ": Yellow");
 		}else{
-			setTitle(title + player1 + ": Red");
+			setTitle(TITLE + player1 + ": Red");
 		}
 
 		int addedRow = game.round(col);
