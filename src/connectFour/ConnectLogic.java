@@ -44,7 +44,7 @@ public class ConnectLogic {
 		}
 		return row;
 	}
-	
+	/*
 	public boolean checkWinner(int column) {
 		String winningColor;
 		if(player1Turn) {
@@ -54,7 +54,7 @@ public class ConnectLogic {
 		}
 		return board.checkForWinner(column, winningColor);
 	}
-	
+	*/
 	
 	
 	public boolean checkWinnerGUI(int column) {
@@ -66,5 +66,5 @@ public class ConnectLogic {
 			winningColor = color2;
 		}
 		return board.checkForWinner(column, winningColor);
-	}
+	} 
 }
