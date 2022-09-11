@@ -37,9 +37,9 @@ public class StartingWindow implements ActionListener{
 	protected JMenuItem aboutItem;
 	
 	
-	private String imgBackGround = "images/sfondo.jpeg";
+	private String IMGBACKGROUND = "images/sfondo.jpeg";
 	
-	private ImageIcon iconBackground = null;
+	private ImageIcon ICONBACKGROUND = null;
 	
 	/**
 	 * Create the application.
@@ -56,11 +56,11 @@ public class StartingWindow implements ActionListener{
 		frmConnect = new JFrame();
 		frmConnect.setBackground(SystemColor.text);
 
-		URL imgURL = getClass().getClassLoader().getResource(imgBackGround);
+		URL imgURL = getClass().getClassLoader().getResource(IMGBACKGROUND);
 		if (imgURL != null) {
-			iconBackground = new ImageIcon(imgURL);
+			ICONBACKGROUND = new ImageIcon(imgURL);
 		} else {
-			System.err.println("Couldn't find file" + imgBackGround);
+			System.err.println("Couldn't find file" + IMGBACKGROUND);
 		}
 		frmConnect.setIconImage(new ImageIcon(imgURL).getImage());
 		frmConnect.setTitle("Connect4");
@@ -113,7 +113,7 @@ public class StartingWindow implements ActionListener{
 		
 		
 		JLabel label = new JLabel();
-		label.setIcon(iconBackground);
+		label.setIcon(ICONBACKGROUND);
 		
 		label.setBounds(0, 0, 544, 644);
 		panel.add(label);

@@ -2,27 +2,27 @@ package connectFour;
 
 public class Board {
 	
-	private static final int rows = 7;
-	private static final int columns = 6;
+	private static final int ROWS = 7;
+	private static final int COLUMNS = 6;
 	
-	Piece [][]ourBoard = new Piece [rows][columns];
+	Piece [][]ourBoard = new Piece [ROWS][COLUMNS];
 	
 	
 	public Board() {
-		for (int row = 0; row < rows; row++) {
-			for (int col = 0; col < columns; col++) {
+		for (int row = 0; row < ROWS; row++) {
+			for (int col = 0; col < COLUMNS; col++) {
 				ourBoard[row][col] = null;
 			}
 		}
 	}
 	
 	public static int getColumns() {
-		return columns;
+		return COLUMNS;
 	}
 	
 	
 	public static int getRows() {
-		return rows;
+		return ROWS;
 	}
 	
 	
@@ -30,12 +30,12 @@ public class Board {
 	public boolean checkForWinner(int col, String winningColor) {
 		boolean someoneWon = false;
 		
-		for(int row = 0; row < rows; row++) {
+		for(int row = 0; row < ROWS; row++) {
 			if(ourBoard[row][col] != null) {
 				int winningStreak = 3;
 				
 				//downwards
-				for(int winRow = row + 1; winRow < rows; winRow++) {
+				for(int winRow = row + 1; winRow < ROWS; winRow++) {
 					if(ourBoard[winRow][col].getColor().equals(winningColor)) {
 						winningStreak--;
 						if(winningStreak == 0) {
@@ -52,7 +52,7 @@ public class Board {
 				//horizontal right
 				for(int winCol = col - 3; winCol < col + 3; winCol++) {
 					if(winCol < 0) continue;
-					if(winCol >= columns) break;
+					if(winCol >= COLUMNS) break;
 				
 					if(ourBoard[row][winCol] != null && ourBoard[row][winCol].getColor().equals(winningColor)){
 						winningStreak--;
@@ -67,7 +67,7 @@ public class Board {
 				//horizontal left
 				for(int winCol = col + 3; winCol > col - 3; winCol++) {
 					if(winCol < 0) continue;
-					if(winCol >= columns) break;
+					if(winCol >= COLUMNS) break;
 				
 					if(ourBoard[row][winCol] != null && ourBoard[row][winCol].getColor().equals(winningColor)){
 						winningStreak--;
@@ -84,7 +84,7 @@ public class Board {
 				//left diagonal
 				for(int winRow = row - 3, winCol = col - 3; winRow <= row + 3 && winCol <= col + 3; winRow++, winCol ++) {
 					if(winRow < 0 || winCol < 0)continue;
-					if(winRow >= rows || winCol >= columns) break;
+					if(winRow >= ROWS || winCol >= COLUMNS) break;
 						
 					if(ourBoard[winRow][winCol] != null && ourBoard[winRow][winCol].getColor().equals(winningColor)){
 						winningStreak--;
@@ -100,8 +100,8 @@ public class Board {
 				
 				//right diagonal
 				for(int winRow = row - 3, winCol = col + 3; winRow <= row + 3 && winCol >= col - 3; winRow++, winCol --) {
-					if(winRow < 0 || winCol >= columns)continue;
-					if(winRow >= rows || winCol < 0) break;
+					if(winRow < 0 || winCol >= COLUMNS)continue;
+					if(winRow >= ROWS || winCol < 0) break;
 						
 					if(ourBoard[winRow][winCol] != null && ourBoard[winRow][winCol].getColor().equals(winningColor)){
 						winningStreak--;
@@ -121,12 +121,12 @@ public class Board {
 	
 	public int addPiece (int colToAdd, String color) {
 		//within normal range
-		if(colToAdd >=0 && colToAdd < columns) {
+		if(colToAdd >=0 && colToAdd < COLUMNS) {
 			//we can add
 			if(ourBoard[0][colToAdd] == null) {
 				
 				int addedRow = -1;
-				for ( int row = rows -1 ; row >= 0; row--) {
+				for ( int row = ROWS -1 ; row >= 0; row--) {
 					if(ourBoard[row][colToAdd] == null) {
 						ourBoard[row][colToAdd] = new Piece();
 						ourBoard[row][colToAdd].setColor(color);
