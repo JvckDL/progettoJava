@@ -149,11 +149,7 @@ public class GUI extends JFrame implements ActionListener, java.io.Serializable{
 		}else{
 			setTitle(title + player1+": Red");
 		}
-		
-		updater();
-		}
-	//prova
-	
+	}
 	
 	private void updateOnButton(JButton button) {
 		int row10plusCol = Integer.parseInt(button.getName());
@@ -199,12 +195,6 @@ public class GUI extends JFrame implements ActionListener, java.io.Serializable{
 			JOptionPane.showMessageDialog(null, "Please enter a valid position", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
-	}
-	
-	
-	
-	public void updater() {
-		cp.getComponent(1);
 	}
 
 
