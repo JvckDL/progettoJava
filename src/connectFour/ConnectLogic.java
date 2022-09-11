@@ -44,22 +44,7 @@ public class ConnectLogic {
 		}
 		return row;
 	}
-<<<<<<< HEAD
-	/*
-	public boolean checkWinner(int column) {
-		String winningColor;
-		if(player1Turn) {
-			winningColor = color1;
-		}else {
-			winningColor = color2;
-		}
-		return board.checkForWinner(column, winningColor);
-	}
-	*/
-=======
->>>>>>> branch 'main' of https://github.com/JvckDL/progettoJava.git
-	
-	
+
 	public boolean checkWinnerGUI(int column) {
 		String winningColor;
 		
