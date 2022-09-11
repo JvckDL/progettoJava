@@ -42,7 +42,9 @@ public class GUI extends JFrame implements ActionListener{
 	
 	
 	public GUI(){
-		
+		/**
+		 * creates the game GUI
+		 */
 		game = new ConnectLogic(player1, player2);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -69,6 +71,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		this.setJMenuBar(menuBar);
 		
+		//setting up images
 		URL imgURLIcon = getClass().getClassLoader().getResource(IMGBACKGROUND);
 		if (imgURLIcon != null) {
 			iconBackground = new ImageIcon(imgURLIcon);
@@ -100,6 +103,7 @@ public class GUI extends JFrame implements ActionListener{
 		cp = getContentPane();
 		cp.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
 		
+		//creating button array grid
 		for (int row = 0; row < ROWS; row ++) {
 			for (int col = 0; col < COLUMNS; col ++) {
 				JButton button = new JButton();
@@ -151,7 +155,11 @@ public class GUI extends JFrame implements ActionListener{
 			setTitle(TITLE + player1+": Red");
 		}
 	}
-	
+	//updating image on button
+	/**
+	 * Updates the checkers on the button
+	 * @param button
+	 */
 	private void updateOnButton(JButton button) {
 		int row10plusCol = Integer.parseInt(button.getName());
 		int col = row10plusCol % 10;

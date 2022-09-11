@@ -7,7 +7,10 @@ import javax.swing.SwingUtilities;
 import connectFour.StartingWindow;
 
 public class Main {
-	
+	/**
+	 * starts the game
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {

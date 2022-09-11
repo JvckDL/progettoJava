@@ -55,7 +55,7 @@ public class StartingWindow implements ActionListener{
 		
 		frmConnect = new JFrame();
 		frmConnect.setBackground(SystemColor.text);
-
+		
 		URL imgURL = getClass().getClassLoader().getResource(IMGBACKGROUND);
 		if (imgURL != null) {
 			ICONBACKGROUND = new ImageIcon(imgURL);
@@ -137,11 +137,17 @@ public class StartingWindow implements ActionListener{
 		
 	}
 	
-	
+	/**
+	 * gets player 2 name
+	 * @return the name of the second player
+	 */
 	public String getnamePla2() {
 		return namePla2;
 	}
-	
+	/**
+	 * gets player 1 name
+	 * @return the name the first player
+	 */
 	public String getnamePla1() {
 		return namePla1;
 	}

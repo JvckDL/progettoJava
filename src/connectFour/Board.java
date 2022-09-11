@@ -7,7 +7,7 @@ public class Board {
 	
 	Piece [][]ourBoard = new Piece [ROWS][COLUMNS];
 	
-	
+	//initializing board
 	public Board() {
 		for (int row = 0; row < ROWS; row++) {
 			for (int col = 0; col < COLUMNS; col++) {
@@ -26,7 +26,12 @@ public class Board {
 	}
 	
 	
-	
+	/**
+	 * check if there is a winner and who is it
+	 * @param col
+	 * @param winningColor
+	 * @return if there is a winner
+	 */
 	public boolean checkForWinner(int col, String winningColor) {
 		boolean someoneWon = false;
 		
@@ -118,7 +123,12 @@ public class Board {
 		}
 		return someoneWon;
 	}
-	
+	/**
+	 * adds the checkers to the board and sets his color
+	 * @param colToAdd
+	 * @param color
+	 * @return the row where the checkers was added
+	 */
 	public int addPiece (int colToAdd, String color) {
 		//within normal range
 		if(colToAdd >=0 && colToAdd < COLUMNS) {

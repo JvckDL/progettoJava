@@ -23,11 +23,18 @@ public class ConnectLogic {
 		this.board = new Board();
 	}
 	
-	
+	/**
+	 * gets if it is player 1 turn
+	 * @return if it is player 1 turn
+	 */
 	public boolean getPlayer1Turn(){
 		return player1Turn;
 	}
-	
+	/**
+	 * adds color in a certain column and row
+	 * @param col
+	 * @return the row where the checker was added
+	 */
 	public int round(int col) {
 		int row = -1;
 		
@@ -46,7 +53,11 @@ public class ConnectLogic {
 		}
 		return row;
 	}
-
+/**
+ * check if someone won in GUI
+ * @param column
+ * @return if someone won in the logic
+ */
 	public boolean checkWinnerGUI(int column) {
 		String winningColor;
 		
