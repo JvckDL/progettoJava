@@ -8,8 +8,6 @@ public class Board {
 	Piece [][]ourBoard = new Piece [rows][columns];
 	
 	
-	
-	
 	public Board() {
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < columns; col++) {

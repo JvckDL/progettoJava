@@ -6,14 +6,13 @@ import java.net.URL;
 
 import javax.swing.*;
 
-public class GUI extends JFrame implements ActionListener, java.io.Serializable{
+public class GUI extends JFrame implements ActionListener{
 	
-	int rows = 7;
-	int columns = 6;
+	int ROWS = 7;
+	int COLUMNS = 6;
 	int windowWidth = 616;
 	int windowHeight = 760;
-	
-	private Container cp;
+
 	
 	private String imgEmptyFileName = "images/empty.png";
 	private String imgRedFileName = "images/red.jpeg";
@@ -25,13 +24,15 @@ public class GUI extends JFrame implements ActionListener, java.io.Serializable{
 	private ImageIcon iconRed = null;
 	private ImageIcon iconYellow = null;
 	
+	private String title = "Connect Four - ";
+	
+	private Container cp;
+	
 	protected JMenuItem aboutItem;
 	protected JMenuItem loadItem;
 	protected JMenuItem saveItem;
 	protected JMenuItem exitItem;
-	
-	
-	private String title = "Connect Four - ";
+
 	
 	private final String player1 = StartingWindow.NamePla1;
 	
@@ -99,8 +100,8 @@ public class GUI extends JFrame implements ActionListener, java.io.Serializable{
 		cp = getContentPane();
 		cp.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
 		
-		for (int row = 0; row < rows; row ++) {
-			for (int col = 0; col < columns; col ++) {
+		for (int row = 0; row < ROWS; row ++) {
+			for (int col = 0; col < COLUMNS; col ++) {
 				JButton button = new JButton();
 				button.setIcon(iconEmpty);
 				button.setPreferredSize(new Dimension(100, 100));
@@ -169,7 +170,7 @@ public class GUI extends JFrame implements ActionListener, java.io.Serializable{
 		if(addedRow != -1) {
 			
 
-			JButton buttonToUpdate = ((JButton)(cp.getComponent(columns * addedRow + col)));
+			JButton buttonToUpdate = ((JButton)(cp.getComponent(COLUMNS * addedRow + col)));
 			if(game.getPlayer1Turn()) {
 				buttonToUpdate.setIcon(iconYellow);
 			}else {
@@ -200,7 +201,6 @@ public class GUI extends JFrame implements ActionListener, java.io.Serializable{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==saveItem) {
 		
 		}

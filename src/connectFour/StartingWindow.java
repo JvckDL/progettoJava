@@ -92,7 +92,6 @@ public class StartingWindow implements ActionListener{
 		panel.add(Player1Label);
 		Player1Label.setFont(new Font("Tahoma", Font.BOLD, 13));
 		Player1Label.setForeground(new Color(255, 0, 0));
-		
 				
 				
 		JLabel Player2Label = new JLabel("Player 2:");
@@ -111,8 +110,6 @@ public class StartingWindow implements ActionListener{
 		NamePlayer2.setBounds(242, 191, 139, 20);
 		panel.add(NamePlayer2);
 		NamePlayer2.setColumns(10);		
-		
-		
 		
 		
 		JLabel label = new JLabel();
@@ -134,9 +131,7 @@ public class StartingWindow implements ActionListener{
 		menuBar.add(help);
 		help.add(aboutItem);
 		
-		
 		aboutItem.addActionListener(this);
-		
 		
 		frmConnect.setJMenuBar(menuBar);
 		
