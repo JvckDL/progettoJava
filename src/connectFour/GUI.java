@@ -2,6 +2,9 @@ package connectFour;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.*;
@@ -40,6 +43,8 @@ public class GUI extends JFrame implements ActionListener{
 	
 	private ConnectLogic game;
 	
+	private Board board;
+	
 	
 	public GUI(){
 		/**
@@ -67,6 +72,7 @@ public class GUI extends JFrame implements ActionListener{
 		
 		aboutItem.addActionListener(this);
 		exitItem.addActionListener(this);
+		saveItem.addActionListener(this);
 		
 		
 		this.setJMenuBar(menuBar);
@@ -118,6 +124,7 @@ public class GUI extends JFrame implements ActionListener{
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						updateOnButton(((JButton)(e.getSource())));
+						
 						
 					}
 				});
@@ -179,6 +186,7 @@ public class GUI extends JFrame implements ActionListener{
 			
 
 			JButton buttonToUpdate = ((JButton)(cp.getComponent(COLUMNS * addedRow + col)));
+			
 			if(game.getPlayer1Turn()) {
 				buttonToUpdate.setIcon(iconYellow);
 			}else {
@@ -209,7 +217,13 @@ public class GUI extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==saveItem) {
+		if(e.getSource()==saveItem) { 
+			if (JOptionPane.showOptionDialog(this, "Click yes to save and close the game.\nPress no to return to the game", "Save Game", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null) == JOptionPane.YES_OPTION) {
+				this.dispose();
+			} else {
+			
+			}
+			saveGameActionPerformed(e);
 		
 		}
 		if(e.getSource()==aboutItem) {
@@ -224,5 +238,34 @@ public class GUI extends JFrame implements ActionListener{
     	}
 		
 	}
+	
+	private void saveGameActionPerformed(java.awt.event.ActionEvent evt) {
+        String toSave = "";
+        int[][] grid = null;
+        for (int k = 0; k < COLUMNS; k++) {
+			for (int i = 0; i < grid[0][COLUMNS]; i++) {
+                toSave += grid[k][i];
+            }
+        }
+        
+        
+        String s = JOptionPane.showInputDialog(null,"Enter the file name you want to save as");
+        
+        BufferedWriter writer = null;
+		try {
+            writer = new BufferedWriter(new FileWriter(s+".txt"));
+            writer.write(toSave);
+        } catch (IOException e) {
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+            }
+        }
+        
+     
+    }
 
 }

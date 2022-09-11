@@ -157,6 +157,8 @@ public class Board {
 		}
 	}
 	
-	
+	public Piece[][] getOurBoard() {
+		return ourBoard;
+	}
 
 }
