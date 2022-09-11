@@ -34,9 +34,9 @@ public class GUI extends JFrame implements ActionListener{
 	protected JMenuItem exitItem;
 
 	
-	private final String player1 = StartingWindow.NamePla1;
+	private final String player1 = StartingWindow.namePla1;
 	
-	private String player2 = StartingWindow.NamePla2;
+	private String player2 = StartingWindow.namePla2;
 	
 	private ConnectLogic game;
 	

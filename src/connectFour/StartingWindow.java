@@ -29,11 +29,11 @@ import javax.swing.border.BevelBorder;
 public class StartingWindow implements ActionListener{
 
 	protected JFrame frmConnect;
-	protected JTextField NamePlayer1;
-	protected JTextField NamePlayer2;
-	protected static String NamePla1;
-	protected static String NamePla2;
-	protected JButton StartGameBtn;
+	protected JTextField namePlayer1;
+	protected JTextField namePlayer2;
+	protected static String namePla1;
+	protected static String namePla2;
+	protected JButton startGameBtn;
 	protected JMenuItem aboutItem;
 	
 	
@@ -81,11 +81,11 @@ public class StartingWindow implements ActionListener{
 		panel.add(loadGameButton);
 		loadGameButton.setFocusable(false);
 		
-		StartGameBtn = new JButton("New Game");
-		StartGameBtn.setBounds(136, 489, 122, 45);
-		panel.add(StartGameBtn);
-		StartGameBtn.setFocusable(false);
-		StartGameBtn.addActionListener(this);
+		startGameBtn = new JButton("New Game");
+		startGameBtn.setBounds(136, 489, 122, 45);
+		panel.add(startGameBtn);
+		startGameBtn.setFocusable(false);
+		startGameBtn.addActionListener(this);
 		
 		JLabel Player1Label = new JLabel("Player 1:");
 		Player1Label.setBounds(173, 145, 59, 14);
@@ -100,16 +100,16 @@ public class StartingWindow implements ActionListener{
 		Player2Label.setForeground(new Color(255, 255, 0));
 		Player2Label.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		NamePlayer1 = new JTextField();
-		NamePlayer1.setBounds(242, 143, 139, 20);
-		panel.add(NamePlayer1);
-		NamePlayer1.setColumns(10);
+		namePlayer1 = new JTextField();
+		namePlayer1.setBounds(242, 143, 139, 20);
+		panel.add(namePlayer1);
+		namePlayer1.setColumns(10);
 		
 		
-		NamePlayer2 = new JTextField();
-		NamePlayer2.setBounds(242, 191, 139, 20);
-		panel.add(NamePlayer2);
-		NamePlayer2.setColumns(10);		
+		namePlayer2 = new JTextField();
+		namePlayer2.setBounds(242, 191, 139, 20);
+		panel.add(namePlayer2);
+		namePlayer2.setColumns(10);		
 		
 		
 		JLabel label = new JLabel();
@@ -138,12 +138,12 @@ public class StartingWindow implements ActionListener{
 	}
 	
 	
-	public String getNamePla2() {
-		return NamePla2;
+	public String getnamePla2() {
+		return namePla2;
 	}
 	
-	public String getNamePla1() {
-		return NamePla1;
+	public String getnamePla1() {
+		return namePla1;
 	}
 
 	@Override
@@ -153,13 +153,13 @@ public class StartingWindow implements ActionListener{
 			JOptionPane.showMessageDialog(null, "Connect4 Game: v.1.0 \nMade by: JvckDL & MattiaGio", "About", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
-		if(NamePlayer1.getText().isEmpty() || NamePlayer2.getText().isEmpty()) {
+		if(namePlayer1.getText().isEmpty() || namePlayer2.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Please enter both player's names", "Error", JOptionPane.ERROR_MESSAGE);
 		}else {
-			NamePla1 = NamePlayer1.getText();
+			namePla1 = namePlayer1.getText();
 			
-			NamePla2 = NamePlayer2.getText();
-			if(e.getSource()==StartGameBtn) {
+			namePla2 = namePlayer2.getText();
+			if(e.getSource()==startGameBtn) {
 				GUI myGUI = new GUI();
 				frmConnect.dispose();
 			}
