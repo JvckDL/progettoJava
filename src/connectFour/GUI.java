@@ -248,7 +248,7 @@ public class GUI extends JFrame implements ActionListener{
             }
         }
         
-        // prova
+        
         String s = JOptionPane.showInputDialog(null,"Enter the file name you want to save as");
         
         BufferedWriter writer = null;
