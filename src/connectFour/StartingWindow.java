@@ -66,6 +66,7 @@ public class StartingWindow implements ActionListener{
 		frmConnect.setTitle("Connect4");
 		frmConnect.setBounds(100, 100, 560, 706);
 		frmConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmConnect.setResizable(false);
 		frmConnect.getContentPane().setLayout(null);
 		frmConnect.setLocationRelativeTo( null );
 		frmConnect.setResizable(false);

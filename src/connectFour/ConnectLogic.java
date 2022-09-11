@@ -44,6 +44,7 @@ public class ConnectLogic {
 		}
 		return row;
 	}
+<<<<<<< HEAD
 	/*
 	public boolean checkWinner(int column) {
 		String winningColor;
@@ -55,6 +56,8 @@ public class ConnectLogic {
 		return board.checkForWinner(column, winningColor);
 	}
 	*/
+=======
+>>>>>>> branch 'main' of https://github.com/JvckDL/progettoJava.git
 	
 	
 	public boolean checkWinnerGUI(int column) {
