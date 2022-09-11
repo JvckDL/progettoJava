@@ -51,8 +51,23 @@ public class Board {
 				winningStreak = 4;
 				
 				
-				//horizontal
+				//horizontal right
 				for(int winCol = col - 3; winCol < col + 3; winCol++) {
+					if(winCol < 0) continue;
+					if(winCol >= columns) break;
+				
+					if(ourBoard[row][winCol] != null && ourBoard[row][winCol].getColor().equals(winningColor)){
+						winningStreak--;
+						if(winningStreak == 0) {
+							someoneWon = true;
+						}
+					}else {
+						winningStreak = 4;
+					}
+				}
+				
+				//horizontal left
+				for(int winCol = col + 3; winCol > col - 3; winCol++) {
 					if(winCol < 0) continue;
 					if(winCol >= columns) break;
 				

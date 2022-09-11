@@ -69,6 +69,7 @@ public class StartingWindow implements ActionListener{
 		frmConnect.setResizable(false);
 		frmConnect.getContentPane().setLayout(null);
 		frmConnect.setLocationRelativeTo( null );
+		frmConnect.setResizable(false);
 		frmConnect.setBackground(Color.YELLOW);
 		
 
