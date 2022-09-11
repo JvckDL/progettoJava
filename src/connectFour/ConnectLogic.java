@@ -2,8 +2,8 @@ package connectFour;
 
 
 public class ConnectLogic {
-	public String color1 = "R";
-	public String color2 = "Y";
+	public String COLOR1 = "R";
+	public String COLOR2 = "Y";
 	public Board board;
 	public String player1;
 	public String player2;
@@ -34,9 +34,9 @@ public class ConnectLogic {
 		String color;
 		
 		if(player1Turn) {
-			color = color1;
+			color = COLOR1;
 		} else {
-			color = color2;
+			color = COLOR2;
 		}
 		
 		row = board.addPiece(col, color);
@@ -51,9 +51,9 @@ public class ConnectLogic {
 		String winningColor;
 		
 		if(!player1Turn) {
-			winningColor = color1;
+			winningColor = COLOR1;
 		}else {
-			winningColor = color2;
+			winningColor = COLOR2;
 		}
 		return board.checkForWinner(column, winningColor);
 	} 
